@@ -22,12 +22,10 @@ public class StatsPanel extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         JLabel title = new JLabel("Your Stats");
-        this.add(title);
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addAndSetTitle(title);
 
         JLabel subtitle = new JLabel("(Past 30 Days)");
-        this.add(subtitle);
-        subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addAndSetTitle(subtitle);
 
         this.add(Box.createRigidArea(new Dimension(0,40)));
 
@@ -68,6 +66,15 @@ public class StatsPanel extends JPanel {
                 updateResultsPanel();
             }
         });
+    }
+
+    /**
+     * prevent duped code
+     * @param label
+     */
+    private void addAndSetTitle(JLabel label){
+        this.add(label);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
     /**
