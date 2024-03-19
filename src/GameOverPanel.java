@@ -70,44 +70,9 @@ public class GameOverPanel extends JPanel {
      */
     // TODO: refactor this method
     public void setGameResults(GameResult result){
-        setResult(result);
-
-        setAnswerText(result);
-        setGNumberText(result);
-
-        //separate out file io into new method
-        if(result.humanWasPlaying){
-            // write stats to file
-            writeGameResults(result);
-        }
-    }
-
-    /**
-     * Sets this.gameResult equal to the passed in result and returns this.gameResult for testing purposes.
-     * @param result
-     * @return
-     */
-    public GameResult setResult(GameResult result){
         this.gameResult = result;
-        return this.gameResult;
-    }
 
-    /**
-     * Sets answerTxt in the correct format and returns it for testing purposes
-     * @param result
-     * @return
-     */
-    public String setAnswerText(GameResult result){
         answerTxt.setText("The answer was " + result.correctValue + ".");
-        return answerTxt.getText();
-    }
-
-    /**
-     * Sets numGuessesTxt in the correct format and returns it for testing purposes
-     * @param result
-     * @return
-     */
-    public String setGNumberText(GameResult result){
         if(result.numGuesses == 1){
             numGuessesTxt.setText((result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
         }
@@ -115,9 +80,12 @@ public class GameOverPanel extends JPanel {
             numGuessesTxt.setText("It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.");
         }
 
-        return numGuessesTxt.getText();
+        //separate out file io into new method
+        if(result.humanWasPlaying){
+            // write stats to file
+            writeGameResults(result);
+        }
     }
-
 
     /**
      * for testing make sure results updated

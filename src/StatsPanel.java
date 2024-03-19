@@ -70,6 +70,11 @@ public class StatsPanel extends JPanel {
         });
     }
 
+    /**
+     * get binName from binIndex. extracted for testing
+     * @param binIndex
+     * @return
+     */
     private static String getBinName(int binIndex) {
         String binName;
         if(binIndex == BIN_EDGES.length-1){
