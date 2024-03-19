@@ -70,15 +70,10 @@ public class GameOverPanel extends JPanel {
      */
     // TODO: refactor this method
     public void setGameResults(GameResult result){
-        this.gameResult = result;
+        setResult(result);
 
-        answerTxt.setText("The answer was " + result.correctValue + ".");
-        if(result.numGuesses == 1){
-            numGuessesTxt.setText((result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
-        }
-        else {
-            numGuessesTxt.setText("It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.");
-        }
+        setAnswerText(result);
+        setGNumberText(result);
 
         //separate out file io into new method
         if(result.humanWasPlaying){
@@ -87,7 +82,47 @@ public class GameOverPanel extends JPanel {
         }
     }
 
-    //for testing make sure results updated
+    /**
+     * Sets this.gameResult equal to the passed in result and returns this.gameResult for testing purposes.
+     * @param result
+     * @return
+     */
+    public GameResult setResult(GameResult result){
+        this.gameResult = result;
+        return this.gameResult;
+    }
+
+    /**
+     * Sets answerTxt in the correct format and returns it for testing purposes
+     * @param result
+     * @return
+     */
+    public String setAnswerText(GameResult result){
+        answerTxt.setText("The answer was " + result.correctValue + ".");
+        return answerTxt.getText();
+    }
+
+    /**
+     * Sets numGuessesTxt in the correct format and returns it for testing purposes
+     * @param result
+     * @return
+     */
+    public String setGNumberText(GameResult result){
+        if(result.numGuesses == 1){
+            numGuessesTxt.setText((result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
+        }
+        else {
+            numGuessesTxt.setText("It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.");
+        }
+
+        return numGuessesTxt.getText();
+    }
+
+
+    /**
+     * for testing make sure results updated
+     * @param result
+     */
     public void writeGameResults(GameResult result){
         try(CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true))) {
 
