@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.function.Consumer;
 
+//no need to test if refactored well
 /**
  * UI for when the human is guessing a number
  *

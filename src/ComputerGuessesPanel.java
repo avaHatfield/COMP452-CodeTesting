@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.function.Consumer;
 
+//no need to test if refactored well
+
 /**
  * UI screen for when the computer is guessing a number
  *
