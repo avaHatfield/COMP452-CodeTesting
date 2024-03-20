@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+//no need to test if refactored well
+
 /**
  * Panel displays after a game has concluded
  * Displays the game outcome

@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+//no need to test if refactored well
+
 /**
  * Displays statistics about how many guesses the person took during past games
  * Loads data from the file and displays in a JPanel
