@@ -34,14 +34,7 @@ public class StatsPanel extends JPanel {
         resultsPanel.setLayout(new GridLayout(0, 2));
         resultsPanel.add(new JLabel("Guesses"));
         resultsPanel.add(new JLabel("Games"));
-        for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
-            String binName = getBinName(binIndex);
-
-            resultsPanel.add(new JLabel(binName));
-            JLabel result = new JLabel("--");
-            resultsLabels.add(result);
-            resultsPanel.add(result);
-        }
+        setUpBins(this.resultsPanel, this.resultsLabels);
 
         resultsPanel.setMinimumSize(new Dimension(120, 120));
         this.add(resultsPanel);
@@ -77,8 +70,20 @@ public class StatsPanel extends JPanel {
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
+    private static void setUpBins(JPanel resultsPanel, ArrayList<JLabel> resultsLabels){
+        for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
+            String binName = getBinName(binIndex);
+
+            resultsPanel.add(new JLabel(binName));
+            JLabel result = new JLabel("--");
+            resultsLabels.add(result);
+            resultsPanel.add(result);
+        }
+    }
+
     /**
-     * get binName from binIndex. extracted for testing
+     * get binName from binIndex. extracted for testing.
+     * should be private because it is only used in this class but made public for testing.
      * @param binIndex
      * @return
      */
