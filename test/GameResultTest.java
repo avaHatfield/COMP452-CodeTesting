@@ -61,4 +61,39 @@ class GameResultTest {
     }
 
 
+    //test upper bound limits
+    @Test
+    void largeCorrectValue() {
+        boolean humanWasPlaying = true;
+        int correctValue = 999;
+        int numGuesses = 15;
+
+        GameResult gameResult = new GameResult(humanWasPlaying, correctValue, numGuesses);
+
+        assertEquals(999, gameResult.correctValue);
+    }
+
+    //test lower bound limits
+    @Test
+    void smallCorrectValue() {
+        boolean humanWasPlaying = true;
+        int correctValue = 1;
+        int numGuesses = 1;
+
+        GameResult gameResult = new GameResult(humanWasPlaying, correctValue, numGuesses);
+
+        assertEquals(1, gameResult.correctValue);
+    }
+
+    // will pass if object not equal to null
+    @Test
+    public void notEqualsNull() {
+
+        GameResult result = new GameResult(true, 42, 5);
+
+        assertNotEquals(result, null);
+    }
+
+
+
 }
