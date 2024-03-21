@@ -74,18 +74,24 @@ public class GameOverPanel extends JPanel {
     public void setGameResults(GameResult result){
         this.gameResult = result;
 
+        //handle UI 
+        setResultUI(result);
+
+        //separate out file io into new method
+        if(result.humanWasPlaying){
+            // write stats to file
+            writeGameResults(result);
+        }
+    }
+
+    //separate out UI code
+    public void setResultUI(GameResult result){
         answerTxt.setText("The answer was " + result.correctValue + ".");
         if(result.numGuesses == 1){
             numGuessesTxt.setText((result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
         }
         else {
             numGuessesTxt.setText("It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.");
-        }
-
-        //separate out file io into new method
-        if(result.humanWasPlaying){
-            // write stats to file
-            writeGameResults(result);
         }
     }
 
