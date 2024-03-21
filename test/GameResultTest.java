@@ -8,8 +8,8 @@ class GameResultTest {
 
         //example member variables
         boolean humanWasPlaying = true;
-        int correctValue = 42;
-        int numGuesses = 5;
+        int correctValue = 50;
+        int numGuesses = 10;
 
         //create instance
         GameResult gameResult = new GameResult(humanWasPlaying, correctValue, numGuesses);
@@ -23,7 +23,7 @@ class GameResultTest {
     @Test
     void humanPlayingTrue(){
         boolean humanWasPlaying = true;
-        int correctValue = 42;
+        int correctValue = 100;
         int numGuesses = 5;
 
         GameResult gameResult = new GameResult(humanWasPlaying, correctValue, numGuesses);
@@ -34,8 +34,8 @@ class GameResultTest {
     @Test
     void humanPlayingFalse() {
         boolean humanWasPlaying = false;
-        int correctValue = 42;
-        int numGuesses = 5;
+        int correctValue = 43;
+        int numGuesses = 3;
 
         GameResult gameResult = new GameResult(humanWasPlaying, correctValue, numGuesses);
 
@@ -45,12 +45,21 @@ class GameResultTest {
     @Test
     void noGuesses() {
         boolean humanWasPlaying = true;
-        int correctValue = 42;
+        int correctValue = 500;
         int numGuesses = 0;
 
         GameResult gameResult = new GameResult(humanWasPlaying, correctValue, numGuesses);
         
         assertEquals(0, gameResult.numGuesses);
+    }
+
+    // will pass if object not equal to null
+    @Test
+    public void notEqualsNull() {
+
+        GameResult result = new GameResult(true, 42, 5);
+
+        assertNotEquals(result, null);
     }
 
 
