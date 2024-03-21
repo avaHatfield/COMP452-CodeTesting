@@ -3,6 +3,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameResultTest {
 
+
+    //pass if constructor works
     @Test
     void constructorCreation(){
 
@@ -20,6 +22,8 @@ class GameResultTest {
         assertEquals(numGuesses, gameResult.numGuesses);
     }
 
+
+    //pass is humanWasPlaying is true
     @Test
     void humanPlayingTrue(){
         boolean humanWasPlaying = true;
@@ -31,6 +35,7 @@ class GameResultTest {
         assertTrue(gameResult.humanWasPlaying);
     }
 
+    //pass is humanWasPlaying is false
     @Test
     void humanPlayingFalse() {
         boolean humanWasPlaying = false;
@@ -42,6 +47,8 @@ class GameResultTest {
         assertFalse(gameResult.humanWasPlaying);
     }
 
+
+    //pass if there are 0 guesses
     @Test
     void noGuesses() {
         boolean humanWasPlaying = true;
