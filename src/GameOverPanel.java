@@ -74,7 +74,7 @@ public class GameOverPanel extends JPanel {
     public void setGameResults(GameResult result){
         this.gameResult = result;
 
-        //handle UI 
+        //handle UI
         setResultUI(result);
 
         //separate out file io into new method
