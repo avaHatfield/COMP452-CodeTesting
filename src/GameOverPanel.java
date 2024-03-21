@@ -71,6 +71,7 @@ public class GameOverPanel extends JPanel {
      * Sets the game results, updates the UI, and saves results to the log file (if human was playing)
      */
     // TODO: refactor this method
+    // public void setGameResults(GameResult result){
     public void setGameResults(GameResult result){
         this.gameResult = result;
 
@@ -78,10 +79,11 @@ public class GameOverPanel extends JPanel {
         setResultUI(result);
 
         //separate out file io into new method
-        if(result.humanWasPlaying){
+        //move to lambda
+       // if(result.humanWasPlaying){
             // write stats to file
-            writeGameResults(result);
-        }
+         //   writeGameResults(result);
+       // }
     }
 
     //separate out UI code
