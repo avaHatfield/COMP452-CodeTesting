@@ -60,6 +60,6 @@ public class HumanGuessesGameTest {
         //using dependency injection
         HumanGuessesGameStub testHumanGame = new HumanGuessesGameStub("");
         testHumanGame.makeGuess(500); //make guess is called with target value: CORRECT
-        assertEquals(true, testHumanGame.isDone());
+        assertTrue(testHumanGame.isDone());
     }
 }
