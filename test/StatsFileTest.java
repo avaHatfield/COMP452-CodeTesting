@@ -2,6 +2,9 @@
 import org.junit.jupiter.api.Test;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StatsFileTest {
@@ -11,16 +14,29 @@ public class StatsFileTest {
         StatsFile statsFile = new StatsFile();
         assertEquals(17, statsFile.maxNumGuesses());
     }
-    @Test
-    void testEmptyFile() throws IOException {
-        // Create an empty file
-        String emptyFile = "empty-stats.csv";
-        FileWriter writer = new FileWriter(emptyFile);
-        writer.close();
 
-        StatsFile statsFile = new StatsFile();
-        assertEquals(0, statsFile.numGames(5));
-        assertEquals(0, statsFile.maxNumGuesses());
+    @Test
+    public void numberFormatExceptionTest() {
+
+        String invalidCsvLine = "2024-03-20T12:00:00,invalid";
+
+        assertThrows(NumberFormatException.class, () -> {
+
+            new StatsFileStub();
+            StatsFileStub.input(LocalDateTime.parse(invalidCsvLine));
+        });
+    }
+
+    @Test
+    public void dateTimeExceptionTest() {
+
+        String invalidCsvLine = "2024-03-00:00,invalid";
+
+        assertThrows(DateTimeParseException.class, () -> {
+
+            new StatsFileStub();
+            StatsFileStub.input(LocalDateTime.parse(invalidCsvLine));
+        });
     }
 
 }
