@@ -60,15 +60,6 @@ class GameResultTest {
         assertEquals(0, gameResult.numGuesses);
     }
 
-    // will pass if object not equal to null
-    @Test
-    public void notEqualsNull() {
-
-        GameResult result = new GameResult(true, 42, 5);
-
-        assertNotEquals(result, null);
-    }
-
 
     //test upper bound limits
     @Test

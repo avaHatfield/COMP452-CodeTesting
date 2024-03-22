@@ -14,24 +14,9 @@ import java.util.function.Consumer;
  * TODO: refactor this class
  */
 public class ComputerGuessesPanel extends JPanel {
-
-    private int numGuesses;
-    private int lastGuess;
-
-    // upperBound and lowerBound track the computer's knowledge about the correct number
-    // They are updated after each guess is made
-    private int upperBound; // correct number is <= upperBound
-    private int lowerBound; // correct number is >= lowerBound
-
-    private void initializeBounds() {
-        numGuesses = 0;
-        upperBound = 1000;
-        lowerBound = 1;
-    }
+    ComputerGuessesGame game = new ComputerGuessesGame();
 
     public ComputerGuessesPanel(JPanel cardsPanel, Consumer<GameResult> gameFinishedCallback){
-
-        initializeBounds();
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -48,41 +33,36 @@ public class ComputerGuessesPanel extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0,10)));
 
         JButton lowerBtn = createButton("Lower", e -> {
-            upperBound = Math.min(upperBound, lastGuess);
-            updateGuess(guessMessage);
+            game.updateGuessLower();
+            guessMessage.setText("I guess " + game.getLastGuess() + ".");
         });
         add(lowerBtn);
 
         JButton correctBtn = createButton("Equal", e -> {
-            GameResult result = new GameResult(false, lastGuess, numGuesses);
+            GameResult result = new GameResult(false, game.getLastGuess(), game.getNumGuesses());
             gameFinishedCallback.accept(result);
             showGameOverScreen(cardsPanel);
         });
         add(correctBtn);
 
         JButton higherBtn = createButton("Higher", e -> {
-            lowerBound = Math.max(lowerBound, lastGuess + 1);
-            updateGuess(guessMessage);
+            game.updateGuessHigher();
+            guessMessage.setText("I guess " + game.getLastGuess() + ".");
         });
         add(higherBtn);
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent e) {
-                numGuesses = 0;
-                upperBound = 1000;
-                lowerBound = 1;
-                lastGuess = (lowerBound + upperBound + 1) / 2;
-                guessMessage.setText("I guess " + lastGuess + ".");
+//                numGuesses = 0;
+//                upperBound = 1000;
+//                lowerBound = 1;
+//                lastGuess = (lowerBound + upperBound + 1) / 2;
+                ComputerGuessesGame newGame = new ComputerGuessesGame();
+                guessMessage.setText("I guess " + newGame.getLastGuess() + ".");
             }
         });
     }
 
-    //message needs to be updated frequently
-    private void updateGuess(JLabel guessMessage) {
-        lastGuess = (lowerBound + upperBound + 1) / 2;
-        numGuesses++;
-        guessMessage.setText("I guess " + lastGuess + ".");
-    }
 
     //creating button was repetive code
     //method that takes in String and ActionEvent

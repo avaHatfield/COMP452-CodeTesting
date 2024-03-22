@@ -55,6 +55,8 @@ public class HumanGuessesGameTest {
         assertEquals(4, testHumanGame.getNumGuesses());
     }
 
+    // fails because the code does not change
+    // the isDone variable in the game loop
     @Test
     void gameDoneTest(){
         //using dependency injection
