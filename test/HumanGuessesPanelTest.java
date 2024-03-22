@@ -50,6 +50,27 @@ public class HumanGuessesPanelTest {
     void inputGoodNumEqual(){
         HumanGuessesPanelMock mockHG = new HumanGuessesPanelMock();
         assertEquals("just right", mockHG.submitGuess("500"));
-
     }
+
+    @Test
+    void inputNumOutsideBound(){
+        HumanGuessesPanelMock mockHG = new HumanGuessesPanelMock();
+        assertEquals("too high", mockHG.submitGuess("10000")); //10000 > 1000 (UPPER_BOUND)
+    }
+
+    @Test
+    void inputNegativeNum(){
+        HumanGuessesPanelMock mockHG = new HumanGuessesPanelMock();
+        assertEquals("too low", mockHG.submitGuess("-20"));
+    }
+
+    /**
+     * should it accept this? should it not? who knows...
+     */
+    @Test
+    void inputNumWithComma(){ //weird if you do this but who knows
+        HumanGuessesPanelMock mockHG = new HumanGuessesPanelMock();
+        assertThrows(NumberFormatException.class, () -> { mockHG.submitGuess("1,235"); });
+    }
+
 }
